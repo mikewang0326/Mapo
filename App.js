@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, TextInput} from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -18,12 +18,30 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      placeName:""
+    };
+  }
+
+  placeNameChangeHandler = val => {
+    this.setState({
+      placeName: val
+    })
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to Mike's React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <TextInput 
+        style = {{ width:300, borderColor:"black", borderWidth:1}}
+        placeholder = "An awesome place"
+        value={ this.state.placeName }
+        onChangeText = { this.placeNameChangeHandler }
+        />
+
       </View>
     );
   }
@@ -32,7 +50,8 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    padding: 30,
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
