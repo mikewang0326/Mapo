@@ -8,6 +8,7 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import ListItem from "./src/components/ListItem/ListItem"
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -23,7 +24,7 @@ export default class App extends Component<Props> {
     super(props);
     this.state = {
       placeName: "",
-      places:[]
+      places: []
     };
   }
 
@@ -35,16 +36,19 @@ export default class App extends Component<Props> {
 
   placeSubmitHandler = () => {
     if (this.state.placeName.trim() !== "") {
-      this.setState(prevState=>{
+      this.setState(prevState => {
         return {
-          places:prevState.places.concat(prevState.placeName)
+          places: prevState.places.concat(prevState.placeName)
         };
       });
     }
   }
 
   render() {
-    const placesOutput = this.state.places.map((place,i)=>(<Text key={i}>{place}</Text>));
+    const placesOutput = this.state.places.map((place, i) => (
+      <ListItem key={i} placeName={place}/>)
+    );
+
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
@@ -63,7 +67,7 @@ export default class App extends Component<Props> {
           />
         </View>
 
-        <View>
+        <View style={styles.listContainer}>
           {placesOutput}
         </View>
       </View>
@@ -79,18 +83,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  inputContainer:{
+  inputContainer: {
     // flex:1,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  placeInput: {
+    width: "70%"
+  },
+  placeButton: {
+    width: "30%"
+  },
+  listContainer:{
     width:"100%",
-    flexDirection:"row",
-    justifyContent:"space-between",
-    alignItems:"center"
-  },
-  placeInput:{
-    width:"70%"
-  },
-  placeButton:{
-    width:"30%"
   },
   welcome: {
     fontSize: 20,
