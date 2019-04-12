@@ -8,7 +8,7 @@ const listItem = (props) => (
     </View>
     </TouchableOpacity>
 );
-1
+
 const styles = StyleSheet.create({
     listItem:{
         width:"100%",
