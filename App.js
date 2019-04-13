@@ -11,7 +11,6 @@ import { Platform, StyleSheet, View } from 'react-native';
 import ListItem from "./src/components/ListItem/ListItem"
 import PlaceItem from "./src/components/PlaceInput/PlaceInput"
 import PlaceList from "./src/components/PlaceList/PlaceList"
-import placeImage from "./src/assets/images.png"
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -27,21 +26,23 @@ export default class App extends Component<Props> {
     places: []
   };
 
-  placeAddedHandler = placeName => { 
-      this.setState(prevState => {
-        return {
-          places: prevState.places.concat({ 
-            key: Math.random(), 
-            name:placeName,
-            image: placeImage
+  placeAddedHandler = placeName => {
+    this.setState(prevState => {
+      return {
+        places: prevState.places.concat({
+          key: Math.random(),
+          name: placeName,
+          image: {
+            uri: "https://cdn78.picsart.com/183722708002202.jpg?c256x256"
           }
-            )
-        };
-      });
+        }
+        )
+      };
+    });
   }
 
   placeDeletedHandler = key => {
-    this.setState(prevState=> {
+    this.setState(prevState => {
       return {
         places: prevState.places.filter(
           place => {
@@ -55,8 +56,8 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <PlaceItem onPlaceAdded={this.placeAddedHandler}/>
-        <PlaceList places={this.state.places} onItemDeleted={this.placeDeletedHandler}/>
+        <PlaceItem onPlaceAdded={this.placeAddedHandler} />
+        <PlaceList places={this.state.places} onItemDeleted={this.placeDeletedHandler} />
       </View>
     );
   }
