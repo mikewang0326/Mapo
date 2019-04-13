@@ -16,6 +16,7 @@ import PlaceList from "./src/components/PlaceList/PlaceList"
 import PlaceDetail from "./src/components/PlaceDetail/PlaceDetail"
 import { addPlace, deletePlace, selectPlace, deselectPlace } from './src/store/actions/index'
 
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -27,18 +28,22 @@ class App extends Component {
 
   placeAddedHandler = placeName => {
     this.props.onAddPlace(placeName)
+    console.log('Place Added')
   }
 
   placeSelectedHandler = key => {
     this.props.onSelectPlace(key)
+    console.log('Place selected')
   }
 
   placeDeletedHandler = () => {
     this.props.onDeletePlace()
+    console.log('Place deleted')
   }
 
   modalCloseHandler = () => {
     this.props.onDeseletePlace()
+    console.log('Modal closed')
   }
 
   render() {
