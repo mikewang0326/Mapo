@@ -11,6 +11,7 @@ import { Platform, StyleSheet, View } from 'react-native';
 import ListItem from "./src/components/ListItem/ListItem"
 import PlaceItem from "./src/components/PlaceInput/PlaceInput"
 import PlaceList from "./src/components/PlaceList/PlaceList"
+import placeImage from "./src/assets/images.png"
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -31,7 +32,8 @@ export default class App extends Component<Props> {
         return {
           places: prevState.places.concat({ 
             key: Math.random(), 
-            value:placeName 
+            name:placeName,
+            image: placeImage
           }
             )
         };
