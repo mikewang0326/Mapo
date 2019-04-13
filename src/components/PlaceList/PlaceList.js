@@ -9,11 +9,12 @@ const placeList = props => {
       <FlatList
         style={styles.listContainer}
         data={props.places}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={(info) => (
           <ListItem
             placeName={info.item.name}
             placeImage={info.item.image}
-            onItemPressed={() => props.onItemDeleted(info.item.key)}
+            onItemPressed={() => props.onItemSelected(info.item.key)}
           />
         )}
       />
